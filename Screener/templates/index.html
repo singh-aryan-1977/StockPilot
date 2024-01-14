@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: arial;
+        margin: 20px;
+      }
+
+      .bullish {
+        background: green;
+        color: white;
+      }
+
+      .bearish {
+        background: red;
+        color: white;
+      }
+
+      td {
+        padding: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Technical Screener</h1>
+
+    <form>
+      <select name="pattern">
+        {% for pattern in patterns %}
+        <option value="{{ pattern }}" {% if pattern == curr_pattern %} selected="selected" {% endif %}>
+          {{ patterns[pattern]}}
+        </option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="scan" />
+    </form>
+
+    <table>
+      <tr>
+        <th>
+          Symbol
+        </th>
+        <th>
+          Company Name
+        </th>
+        <th>
+          Signal
+        </th>
+        <th>
+          Graph
+        </th>
+        <th>
+          Portfolio Analytics
+        </th>
+      </tr>
+      {% for stock in stocks %}  
+      {% if stocks[stock][curr_pattern] %}
+      <tr>
+        <td>{{ stock }}</td>
+        <td> {{ stocks[stock]['company']}}</td>
+        <td class="{{ stocks[stock][curr_pattern] }}">{{ stocks[stock][curr_pattern] }}</td>
+        <td>
+          <img src = "https://finviz.com/chart.ashx?t={{ stock }}&ty=c&ta=1&p=d&s=l">
+        </td>
+        <td>
+          <a href="{{ url_for('tearsheet', stock=stock, pattern=curr_pattern) }}" target="_blank">
+          <button>Analyze Tear Sheet</button>
+          </a>
+        </td>
+      </tr> 
+        {% endif %} {% endfor %}
+    </table>
+  </body>
+</html>
