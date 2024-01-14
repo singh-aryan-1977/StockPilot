@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Tear Sheet</title>
+  </head>
+  <body>
+    <h1>Tear Sheet for {{ stock }}</h1>
+    <p>Pattern: {{ pattern }}</p>
+
+    <!-- <p>
+      Download the tearsheet:
+      <a
+        href="{{ url_for('static', filename='tearsheet_{}.html'.format(stock)) }}"
+        target="_blank"
+        >Tearsheet</a
+      >
+    </p> -->
+    {{ tearsheet_content | safe }}
+  </body>
+</html>
