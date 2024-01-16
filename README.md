@@ -1,6 +1,6 @@
 # StockPilot
 
-This project is a web application built using Flask that serves as a technical screener for stock patterns. The application allows users to analyze stock patterns and find stocks in that current pattern, view generated tear sheets for that stock against their chosen benchmark, see whether it is in a bearish or bullish mode, and also view whether it is in squeeze (according to the TTM squeeze indactor) right now along with its candlestick chart showing the bollinger bonds and keltner channels. Please do not use this as the sole source for your investment advice.
+This project is a web application built using Flask that serves as a technical screener for stock patterns. The application allows users to analyze stock patterns and find stocks in that current pattern, view generated tear sheets for that stock against their chosen benchmark, see whether it is in a bearish or bullish mode, and also view whether it is in squeeze (according to the TTM squeeze indicator) right now along with its candlestick chart showing the bollinger bonds and keltner channels. Please do not use this as the sole source for your investment advice.
 
 ## Running the program
 
