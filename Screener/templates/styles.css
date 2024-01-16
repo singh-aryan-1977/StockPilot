@@ -1,0 +1,37 @@
+.error-message {
+  text-align: center;
+  margin: auto;
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+body {
+  font-family: arial;
+  margin: 20px;
+}
+
+.bullish {
+  background: green;
+  color: white;
+}
+
+.bearish {
+  background: red;
+  color: white;
+}
+
+td {
+  padding: 20px;
+}
+
+.scanner {
+  text-align: center;
+  margin: auto;
+  max-width: 600px;
+}
+
+.results-table {
+  text-align: center;
+  margin: auto;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Squeeze Plot</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: azure;
+      }
+
+      h1 {
+        margin: auto;
+        text-align: center;
+      }
+
+      .figure {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .squeeze-title {
+        flex: 0 0 auto;
+      }
+
+      .figure {
+        flex: 1 1 auto;
+      }
+    </style>
+    <!-- Include Plotly JS library -->
+  </head>
+  <body>
+    <div clas="squeeze-title">
+      <h1>Candlestick chart for {{ stock }}</h1>
+    </div>
+    <div class="figure">{{ fig_html | safe }}</div>
+  </body>
+</html>

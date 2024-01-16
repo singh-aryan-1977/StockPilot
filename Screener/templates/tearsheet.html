@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Tear Sheet</title>
+    <style>
+      body {
+        background-color: azure;
+      }
+      h1,
+      p {
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .compairsion-form {
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 25px;
+      }
+
+      .tearsheet-title {
+        padding-bottom: 10px;
+      }
+
+      .tearsheet-content {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="compairsion-form">
+      <form method="get" action="{{ url_for('tearsheet') }}">
+        <label for="compare_stock">Compare with:</label>
+        <input
+          type="text"
+          id="compare_stock"
+          name="compare_stock"
+          placeholder="Enter Ticker"
+        />
+        <input type="hidden" name="stock" value="{{ stock }}" />
+        <input type="hidden" name="pattern" value="{{ pattern }}" />
+        <button type="submit">Generate Tear Sheet</button>
+      </form>
+    </div>
+
+    <div class="tearsheet-title">
+      <h1>Tear Sheet for {{ stock }}</h1>
+      <p>Pattern: {{ pattern }}</p>
+    </div>
+
+    <div class="tearsheet-content">{{ tearsheet_content | safe }}</div>
+  </body>
+</html>

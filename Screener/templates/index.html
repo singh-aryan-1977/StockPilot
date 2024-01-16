@@ -1,0 +1,104 @@
+<html>
+  <head>
+   <style>
+    body {
+  font-family: arial;
+  margin: 20px;
+  background-color: azure;
+}
+
+.bullish {
+  background: green;
+  color: white;
+}
+
+.bearish {
+  background: red;
+  color: white;
+}
+
+td {
+  padding: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+.scanner {
+  text-align: center;
+  margin: auto;
+  max-width: 600px;
+}
+
+.results-table {
+  text-align: center;
+  margin: auto;
+}
+   </style>
+  </head>
+
+  <body>
+    <div class="scanner">
+    <h1>Technical Screener</h1>
+
+    <form>
+      <select name="pattern">
+        {% for pattern in patterns %}
+        <option value="{{ pattern }}" {% if pattern == curr_pattern %} selected="selected" {% endif %}>
+          {{ patterns[pattern]}}
+        </option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Scan" />
+    </form>
+    </div>
+
+    <table class="results-table">
+      <tr>
+        <th>
+          Symbol
+        </th>
+        <th>
+          Company Name
+        </th>
+        <th>
+          Signal
+        </th>
+        <th>
+          Graph
+        </th>
+        <th>
+          Portfolio Analytics
+        </th>
+        <th>
+            In Squeeze
+        </th>
+      </tr>
+      {% if flag %}
+      {% for stock in stocks %}  
+      {% if stocks[stock][curr_pattern] or curr_pattern == "See All" %}
+      <tr>
+        <td>{{ stock }}</td>
+        <td> {{ stocks[stock]['company']}}</td>
+        <td class="{{ stocks[stock][curr_pattern] }}">{{ stocks[stock][curr_pattern] }}</td>
+        <td>
+          <img src = "https://finviz.com/chart.ashx?t={{ stock }}&ty=c&ta=1&p=d&s=l">
+        </td>
+        <td>
+          <a href="{{ url_for('tearsheet', stock=stock, pattern=curr_pattern) }}" target="_blank">
+          <button>Analyze Tear Sheet</button>
+          </a>
+        </td>
+        <td>
+          <a href="{{ url_for('ttmsqueeze', stock=stock) }}" target="_blank">{{ stocks_squeeze[stock] }}</a>
+        </td>
+      </tr> 
+        {% endif %} {% endfor %} {% endif %}
+        {% if not flag %}
+        <tr>
+          <td colspan="6"> No stocks were found with this pattern</td>
+        </tr>
+        {% endif %}
+    </table>
+  </body>
+</html>
