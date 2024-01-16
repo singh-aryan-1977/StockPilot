@@ -1,5 +1,6 @@
 # Got from https://ta-lib.github.io/ta-lib-python/funcs.html
 patterns = {
+    'See All': "ALL",
     'CDL2CROWS':'Two Crows',
     'CDL3BLACKCROWS':'Three Black Crows',
     'CDL3INSIDE':'Three Inside Up/Down',

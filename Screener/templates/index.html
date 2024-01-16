@@ -1,28 +1,44 @@
 <html>
   <head>
-    <style>
-      body {
-        font-family: arial;
-        margin: 20px;
-      }
+   <style>
+    body {
+  font-family: arial;
+  margin: 20px;
+  background-color: azure;
+}
 
-      .bullish {
-        background: green;
-        color: white;
-      }
+.bullish {
+  background: green;
+  color: white;
+}
 
-      .bearish {
-        background: red;
-        color: white;
-      }
+.bearish {
+  background: red;
+  color: white;
+}
 
-      td {
-        padding: 20px;
-      }
-    </style>
+td {
+  padding: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+.scanner {
+  text-align: center;
+  margin: auto;
+  max-width: 600px;
+}
+
+.results-table {
+  text-align: center;
+  margin: auto;
+}
+   </style>
   </head>
 
   <body>
+    <div class="scanner">
     <h1>Technical Screener</h1>
 
     <form>
@@ -33,10 +49,11 @@
         </option>
         {% endfor %}
       </select>
-      <input type="submit" value="scan" />
+      <input type="submit" value="Scan" />
     </form>
+    </div>
 
-    <table>
+    <table class="results-table">
       <tr>
         <th>
           Symbol
@@ -53,9 +70,13 @@
         <th>
           Portfolio Analytics
         </th>
+        <th>
+            In Squeeze
+        </th>
       </tr>
+      {% if flag %}
       {% for stock in stocks %}  
-      {% if stocks[stock][curr_pattern] %}
+      {% if stocks[stock][curr_pattern] or curr_pattern == "See All" %}
       <tr>
         <td>{{ stock }}</td>
         <td> {{ stocks[stock]['company']}}</td>
@@ -68,8 +89,16 @@
           <button>Analyze Tear Sheet</button>
           </a>
         </td>
+        <td>
+          <a href="{{ url_for('ttmsqueeze', stock=stock) }}" target="_blank">{{ stocks_squeeze[stock] }}</a>
+        </td>
       </tr> 
-        {% endif %} {% endfor %}
+        {% endif %} {% endfor %} {% endif %}
+        {% if not flag %}
+        <tr>
+          <td colspan="6"> No stocks were found with this pattern</td>
+        </tr>
+        {% endif %}
     </table>
   </body>
 </html>
